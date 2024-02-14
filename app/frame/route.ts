@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getConnectedAddressForUser } from "@/utils/fc";
 
 import { PinataFDK } from "pinata-fdk";
 const fdk = new PinataFDK({
