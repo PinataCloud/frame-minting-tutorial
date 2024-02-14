@@ -12,7 +12,7 @@
     "@openzeppelin/contracts": "^5.0.1",
     "dotenv": "^16.4.4",
     "next": "14.1.0",
-    "pinata-fdk": "^1.4.0",
+    "pinata-fdk": "^1.6.0",
     "react": "^18",
     "react-dom": "^18"
   },
