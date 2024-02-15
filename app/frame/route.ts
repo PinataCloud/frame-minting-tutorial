@@ -24,8 +24,8 @@ export async function GET(req: NextRequest, res: NextResponse) {
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const frameMetadata = await fdk.getFrameMetadata({
-      post_url: `${process.env.BASE_URL}/frame`,
-      buttons: [{ label: "Go Back", action: "post" }],
+      post_url: `${process.env.BASE_URL}/redirect`,
+      buttons: [{ label: "Read more", action: "post_redirect" }],
       aspect_ratio: "1:1",
       cid: "QmaaEbtsetwamJwfFPAQAFC6FAE1xeYsvF7EBKA8NYMjP2",
     });
