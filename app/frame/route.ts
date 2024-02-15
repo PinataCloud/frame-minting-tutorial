@@ -20,18 +20,3 @@ export async function GET(req: NextRequest, res: NextResponse) {
     return NextResponse.json({ error: error });
   }
 }
-
-export async function POST(req: NextRequest, res: NextResponse) {
-  try {
-    const frameMetadata = await fdk.getFrameMetadata({
-      post_url: `${process.env.BASE_URL}/redirect`,
-      buttons: [{ label: "Read more", action: "post_redirect" }],
-      aspect_ratio: "1:1",
-      cid: "QmaaEbtsetwamJwfFPAQAFC6FAE1xeYsvF7EBKA8NYMjP2",
-    });
-    return new NextResponse(frameMetadata);
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json({ error: error });
-  }
-}

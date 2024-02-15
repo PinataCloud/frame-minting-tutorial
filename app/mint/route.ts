@@ -31,8 +31,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
   } else {
     const frameMetadata = await fdk.getFrameMetadata({
-      post_url: `${process.env.BASE_URL}/frame`,
-      buttons: [{ label: "Go Back", action: "post" }],
+      post_url: `${process.env.BASE_URL}/rediect`,
+      buttons: [{ label: "Learn How to Make This", action: "post" }],
       aspect_ratio: "1:1",
       cid: "QmaaEbtsetwamJwfFPAQAFC6FAE1xeYsvF7EBKA8NYMjP2",
     });
