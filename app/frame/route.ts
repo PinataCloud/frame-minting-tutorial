@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server"
 import { getConnectedAddressForUser } from "@/utils/fc";
 import { mintNft, balanceOf } from "@/utils/mint";
 
@@ -34,8 +34,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
       const mint = await mintNft(address);
       console.log(mint);
       const frameMetadata = await fdk.getFrameMetadata({
-        post_url: `${process.env.BASE_URL}/frame`,
-        buttons: [{ label: "Go Back", action: "post" }],
+        post_url: `${process.env.BASE_URL}/redirect`,
+        buttons: [{ label: "Learn How to Make This", action: "post_redirect" }],
         aspect_ratio: "1:1",
         cid: "QmUx3kQH4vR2t7mTmW3jHJgJgJGxjoBsMxt6z1fkZEHyHJ",
       });
