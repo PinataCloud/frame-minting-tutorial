@@ -2,7 +2,7 @@ import { createWalletClient, http, createPublicClient } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { baseSepolia } from "viem/chains";
 import contractAbi from "./contract.json";
-const contract = process.env.CONTRACT_ADDRESS as `0x`;
+const contractAddress = process.env.CONTRACT_ADDRESS as `0x`;
 
 const account = privateKeyToAccount((process.env.PRIVATE_KEY as `0x`) || "");
 
@@ -21,7 +21,7 @@ export async function mintNft(toAddress: string) {
   try {
     const { request }: any = await publicClient.simulateContract({
       account,
-      address: contract,
+      address: contractAddress,
       abi: contractAbi.output.abi,
       functionName: "mint",
       args: [toAddress, 0, 1, `0x`],
@@ -37,7 +37,7 @@ export async function mintNft(toAddress: string) {
 export async function balanceOf(address: string) {
   try {
     const balanceData = await publicClient.readContract({
-      address: contract,
+      address: contractAddress,
       abi: contractAbi.output.abi,
       functionName: "balanceOf",
       args: [address as `0x`, 0]
