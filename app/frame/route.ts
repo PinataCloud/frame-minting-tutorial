@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getConnectedAddressForUser } from "@/utils/fc";
 import { mintNft, balanceOf } from "@/utils/mint";
-
 import { PinataFDK } from "pinata-fdk";
+
 const fdk = new PinataFDK({
   pinata_jwt: process.env.PINATA_JWT as string,
   pinata_gateway: process.env.GATEWAY_URL as string,
@@ -42,6 +42,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         aspect_ratio: "1:1",
         cid: "QmUx3kQH4vR2t7mTmW3jHJgJgJGxjoBsMxt6z1fkZEHyHJ",
       });
+      await fdk.sendAnalytics("frame-mint-tutorial", body);
       return new NextResponse(frameMetadata);
     } catch (error) {
       console.log(error);
@@ -50,13 +51,15 @@ export async function POST(req: NextRequest, res: NextResponse) {
   } else {
     const frameMetadata = await fdk.getFrameMetadata({
       post_url: `${process.env.BASE_URL}/redirect`,
-        buttons: [
-          { label: "Blog Tutorial", action: "post_redirect" },
-          { label: "Video Tutorial", action: "post_redirect" },
-        ],
+      buttons: [
+        { label: "Blog Tutorial", action: "post_redirect" },
+        { label: "Video Tutorial", action: "post_redirect" },
+      ],
       aspect_ratio: "1:1",
       cid: "QmaaEbtsetwamJwfFPAQAFC6FAE1xeYsvF7EBKA8NYMjP2",
     });
+    await fdk.sendAnalytics("frame-mint-tutorial", body);
+
     return new NextResponse(frameMetadata);
   }
 }
