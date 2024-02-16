@@ -28,6 +28,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const fid = body.untrustedData.fid;
   const address = await getConnectedAddressForUser(fid);
   const balance = await balanceOf(address);
+  const { isValid, message } = await fdk.validateFrameMessage(body);
   console.log(balance);
   if (typeof balance === "number" && balance !== null && balance < 1) {
     try {
@@ -42,7 +43,10 @@ export async function POST(req: NextRequest, res: NextResponse) {
         aspect_ratio: "1:1",
         cid: "QmUx3kQH4vR2t7mTmW3jHJgJgJGxjoBsMxt6z1fkZEHyHJ",
       });
-      await fdk.sendAnalytics("frame-mint-tutorial", body);
+      if (isValid) {
+        await fdk.sendAnalytics("frame-mint-tutorial", body);
+      }
+
       return new NextResponse(frameMetadata);
     } catch (error) {
       console.log(error);
@@ -58,7 +62,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
       aspect_ratio: "1:1",
       cid: "QmaaEbtsetwamJwfFPAQAFC6FAE1xeYsvF7EBKA8NYMjP2",
     });
-    await fdk.sendAnalytics("frame-mint-tutorial", body);
+    if (isValid) {
+      await fdk.sendAnalytics("frame-mint-tutorial", body);
+    }
 
     return new NextResponse(frameMetadata);
   }

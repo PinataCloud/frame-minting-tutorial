@@ -6,13 +6,15 @@ const fdk = new PinataFDK({
   pinata_gateway: process.env.GATEWAY_URL as string,
 });
 
-
 export async function POST(req: NextRequest, res: NextResponse) {
   const body = await req.json();
   const buttonId = body.untrustedData.buttonIndex;
+  const { isValid, message } = await fdk.validateFrameMessage(body);
   if (buttonId === 1) {
     try {
-      await fdk.sendAnalytics("frame-mint-tutorial", body);
+      if (isValid) {
+        await fdk.sendAnalytics("frame-mint-tutorial", body);
+      }
       return NextResponse.redirect(
         "https://www.pinata.cloud/blog/how-to-build-a-farcaster-frame-that-mints-nfts",
         { status: 302 },
@@ -23,7 +25,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
   } else {
     try {
-      await fdk.sendAnalytics("frame-mint-tutorial", body);
+      if (isValid) {
+        await fdk.sendAnalytics("frame-mint-tutorial", body);
+      }
       return NextResponse.redirect("https://youtu.be/5VVOMolm-TA", {
         status: 302,
       });
