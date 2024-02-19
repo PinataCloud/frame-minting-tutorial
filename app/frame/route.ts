@@ -44,7 +44,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         cid: "QmUx3kQH4vR2t7mTmW3jHJgJgJGxjoBsMxt6z1fkZEHyHJ",
       });
       if (isValid) {
-        await fdk.sendAnalytics("frame-mint-tutorial", body);
+        await fdk.sendAnalytics("frame-mint-tutorial-mint", body);
       }
 
       return new NextResponse(frameMetadata);
@@ -63,7 +63,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       cid: "QmaaEbtsetwamJwfFPAQAFC6FAE1xeYsvF7EBKA8NYMjP2",
     });
     if (isValid) {
-      await fdk.sendAnalytics("frame-mint-tutorial", body);
+      await fdk.sendAnalytics("frame-mint-tutorial-mint", body);
     }
 
     return new NextResponse(frameMetadata);
