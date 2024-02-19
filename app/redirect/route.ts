@@ -13,7 +13,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   if (buttonId === 1) {
     try {
       if (isValid) {
-        await fdk.sendAnalytics("frame-mint-tutorial", body);
+        await fdk.sendAnalytics("frame-mint-tutorial-blog", body);
       }
       return NextResponse.redirect(
         "https://www.pinata.cloud/blog/how-to-build-a-farcaster-frame-that-mints-nfts",
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   } else {
     try {
       if (isValid) {
-        await fdk.sendAnalytics("frame-mint-tutorial", body);
+        await fdk.sendAnalytics("frame-mint-tutorial-video", body);
       }
       return NextResponse.redirect("https://youtu.be/5VVOMolm-TA", {
         status: 302,
